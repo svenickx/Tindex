@@ -31,7 +31,7 @@ const LoginScreen = ({navigation}) => {
         console.log(err);
       });
 
-    navigation.navigate('Home');
+    navigation.navigate('Root', {screen: 'Home'});
   };
 
   // const apiCall = async () => {
@@ -44,6 +44,13 @@ const LoginScreen = ({navigation}) => {
   //       console.log(err);
   //     });
   // };
+
+  useEffect(() => {
+    const currentToken = AsyncStorage.getItem('jwtToken');
+    if (currentToken != null && currentToken !== '') {
+      navigation.navigate('Root', {screen: 'Home'});
+    }
+  });
 
   useEffect(() => {
     if (username.length >= 3) {
