@@ -1,17 +1,14 @@
 import React, {useEffect, useState} from 'react';
-import {Button, FlatList, SafeAreaView, Text} from 'react-native';
+import {ActivityIndicator, FlatList, SafeAreaView} from 'react-native';
 import axios from 'axios';
 import PeopleCard from '../components/peopleCard';
+import {CenteredView} from '../../public/style/styleComponents';
 
 const HomeScreen = ({navigation}) => {
   const [people, setPeople] = useState([]);
   const [page, setPage] = useState(1);
   const [endReached, setEndReached] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-
-  const renderPeople = ({item}) => {
-    return <PeopleCard person={item} />;
-  };
 
   useEffect(() => {
     axios
@@ -29,7 +26,11 @@ const HomeScreen = ({navigation}) => {
   }, [page]);
 
   if (isLoading) {
-    return <Text>Loading... </Text>;
+    return (
+      <CenteredView>
+        <ActivityIndicator size="large" color="#E83D95" />
+      </CenteredView>
+    );
   }
   return (
     <SafeAreaView>
@@ -40,7 +41,9 @@ const HomeScreen = ({navigation}) => {
             setPage(page + 1);
           }
         }}
-        renderItem={renderPeople}
+        renderItem={props => {
+          return <PeopleCard person={props.item} />;
+        }}
         keyExtractor={item => item.id}
       />
     </SafeAreaView>

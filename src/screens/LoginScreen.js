@@ -1,19 +1,30 @@
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView, Text, TextInput, TouchableOpacity} from 'react-native';
+import {
+  Button,
+  SafeAreaView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  LoginButton,
+  LoginButtonText,
+  LoginButtonView,
+  LoginInputView,
+  SplashLogoImage,
+  SplashLogoView,
+  SplashView,
+} from '../../public/style/styleComponents';
+import Input from 'react-native-input-style';
 
 const LoginScreen = ({navigation}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [usernameLengthValid, setUsernameLengthValid] = useState(false);
-  const [passwordLengthValid, setPasswordLengthValid] = useState(false);
 
   const apiCall = async () => {
-    if (!usernameLengthValid || !passwordLengthValid) {
-      return;
-    }
-
     await axios
       .post('https://login.hikkary.com/users/login', {
         username,
@@ -34,41 +45,53 @@ const LoginScreen = ({navigation}) => {
     navigation.navigate('Root', {screen: 'Home'});
   };
 
-  useEffect(() => {
-    const currentToken = AsyncStorage.getItem('jwtToken');
-    if (currentToken != null && currentToken !== '') {
-      navigation.navigate('Root', {screen: 'Home'});
-    }
-  });
-
-  useEffect(() => {
-    if (username.length >= 3) {
-      setUsernameLengthValid(true);
-    } else {
-      setUsernameLengthValid(false);
-    }
-    if (password.length >= 8) {
-      setPasswordLengthValid(true);
-    } else {
-      setPasswordLengthValid(false);
-    }
-  }, [username, password]);
-
   return (
     <SafeAreaView>
-      <TextInput
-        onChangeText={text => setUsername(text)}
-        placeholder="Username"
-      />
-      {!usernameLengthValid && <Text>Minimum 3 caractères</Text>}
-      <TextInput
-        onChangeText={text => setPassword(text)}
-        placeholder="Password"
-      />
-      {!passwordLengthValid && <Text>Minimum 8 caractères</Text>}
-      <TouchableOpacity onPress={() => apiCall()}>
-        <Text>Log In</Text>
-      </TouchableOpacity>
+      <SplashView>
+        <SplashLogoView>
+          <SplashLogoImage
+            source={require('../../public/images/tindex_logo.png')}
+          />
+        </SplashLogoView>
+        <LoginInputView>
+          <Input
+            id="name"
+            label="Username"
+            required
+            minLength={3}
+            maxLength={15}
+            autoCapitalize="none"
+            errorText="Invalid username"
+            onInputChange={(id, value) => {
+              setUsername(value);
+            }}
+            initialValue=""
+            outlined
+            borderColor="black"
+          />
+          <Input
+            id="password"
+            label="Password"
+            required
+            minLength={8}
+            maxLength={30}
+            autoCapitalize="none"
+            errorText="Invalid password"
+            onInputChange={(id, value) => {
+              setPassword(value);
+            }}
+            initialValue=""
+            outlined
+            borderColor="black"
+            secureTextEntry={true}
+          />
+          <LoginButtonView>
+            <LoginButton color={'#E83D95'} onPress={() => apiCall()}>
+              <LoginButtonText>Log In</LoginButtonText>
+            </LoginButton>
+          </LoginButtonView>
+        </LoginInputView>
+      </SplashView>
     </SafeAreaView>
   );
 };
