@@ -34,17 +34,6 @@ const LoginScreen = ({navigation}) => {
     navigation.navigate('Root', {screen: 'Home'});
   };
 
-  // const apiCall = async () => {
-  //   await axios
-  //     .get('http://mobile.svenckx.com/people')
-  //     .then(res => {
-  //       console.log(res.data);
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // };
-
   useEffect(() => {
     const currentToken = AsyncStorage.getItem('jwtToken');
     if (currentToken != null && currentToken !== '') {

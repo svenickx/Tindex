@@ -11,13 +11,23 @@ const Tab = createBottomTabNavigator();
 
 const Routes = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#f4511e',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }}>
       <Stack.Screen name="Login" component={LoginScreen} />
       <Stack.Screen
         name="Root"
         component={Root}
-        options={{headerShown: false}}
+        options={{headerShown: false, title: 'Login'}}
       />
+      <Stack.Screen name="Profile" component={ProfileScreen} />
     </Stack.Navigator>
   );
 };
@@ -26,7 +36,6 @@ const Root = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
       <Tab.Screen name="Matches" component={MatchesScreen} />
     </Tab.Navigator>
   );
