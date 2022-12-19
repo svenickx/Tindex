@@ -3,12 +3,13 @@ import {ActivityIndicator, FlatList, SafeAreaView} from 'react-native';
 import axios from 'axios';
 import PeopleCard from '../components/peopleCard';
 import {CenteredView} from '../../public/style/styleComponents';
+import {MAIN_COLOR, PROFILE_ID} from 'react-native-dotenv';
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [people, setPeople] = useState([]);
   const [page, setPage] = useState(1);
   const [endReached, setEndReached] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios
@@ -28,7 +29,7 @@ const HomeScreen = ({navigation}) => {
   if (isLoading) {
     return (
       <CenteredView>
-        <ActivityIndicator size="large" color="#E83D95" />
+        <ActivityIndicator size="large" color={MAIN_COLOR} />
       </CenteredView>
     );
   }
@@ -42,7 +43,10 @@ const HomeScreen = ({navigation}) => {
           }
         }}
         renderItem={props => {
-          return <PeopleCard person={props.item} />;
+          if (props.item.id.toString() !== PROFILE_ID) {
+            return <PeopleCard person={props.item} />;
+          }
+          return '';
         }}
         keyExtractor={item => item.id}
       />

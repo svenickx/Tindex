@@ -1,12 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
-import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, Image, SafeAreaView, Text, View} from 'react-native';
+import React, {useEffect} from 'react';
+import {ActivityIndicator, SafeAreaView, View} from 'react-native';
 import {
   SplashLogoImage,
   SplashLogoView,
   SplashView,
 } from '../../public/style/styleComponents';
+import {MAIN_COLOR} from 'react-native-dotenv';
 
 const SplashScreen = () => {
   const navigation = useNavigation();
@@ -33,7 +34,7 @@ const SplashScreen = () => {
           />
         </SplashLogoView>
         <View>
-          <ActivityIndicator size="large" color="#E83D95" />
+          <ActivityIndicator size="large" color={MAIN_COLOR} />
         </View>
       </SplashView>
     </SafeAreaView>

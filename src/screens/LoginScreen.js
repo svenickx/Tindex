@@ -1,12 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {
-  Button,
-  SafeAreaView,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import React, {useState} from 'react';
+import {SafeAreaView} from 'react-native';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
@@ -18,13 +11,17 @@ import {
   SplashLogoView,
   SplashView,
 } from '../../public/style/styleComponents';
-import Input from 'react-native-input-style';
+import CustomTextInput from '../components/customTextInput';
 
 const LoginScreen = ({navigation}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const apiCall = async () => {
+    if (username.length < 3 || password.length < 8) {
+      return;
+    }
+
     await axios
       .post('https://login.hikkary.com/users/login', {
         username,
@@ -54,40 +51,11 @@ const LoginScreen = ({navigation}) => {
           />
         </SplashLogoView>
         <LoginInputView>
-          <Input
-            id="name"
-            label="Username"
-            required
-            minLength={3}
-            maxLength={15}
-            autoCapitalize="none"
-            errorText="Invalid username"
-            onInputChange={(id, value) => {
-              setUsername(value);
-            }}
-            initialValue=""
-            outlined
-            borderColor="black"
-          />
-          <Input
-            id="password"
-            label="Password"
-            required
-            minLength={8}
-            maxLength={30}
-            autoCapitalize="none"
-            errorText="Invalid password"
-            onInputChange={(id, value) => {
-              setPassword(value);
-            }}
-            initialValue=""
-            outlined
-            borderColor="black"
-            secureTextEntry={true}
-          />
+          <CustomTextInput value="Username" onInputChange={setUsername} />
+          <CustomTextInput value="Password" onInputChange={setPassword} />
           <LoginButtonView>
-            <LoginButton color={'#E83D95'} onPress={() => apiCall()}>
-              <LoginButtonText>Log In</LoginButtonText>
+            <LoginButton onPress={() => apiCall()}>
+              <LoginButtonText>Se connecter</LoginButtonText>
             </LoginButton>
           </LoginButtonView>
         </LoginInputView>

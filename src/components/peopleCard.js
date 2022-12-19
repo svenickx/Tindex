@@ -3,9 +3,9 @@ import {React} from 'react';
 import {View} from 'react-native';
 import {
   Card,
-  CardImage,
   CardTitle,
-  Title,
+  DescriptionWhite,
+  TitleWhite,
 } from '../../public/style/styleComponents';
 import Picture from './picture';
 
@@ -14,7 +14,8 @@ const PeopleCard = ({person}) => {
   return (
     <Card onPress={() => navigation.navigate('Profile', {id: person.id})}>
       <CardTitle>
-        <Title>{person.name}</Title>
+        <TitleWhite>{person.name}</TitleWhite>
+        <DescriptionWhite>{person.description}</DescriptionWhite>
       </CardTitle>
       <View key={person.id}>
         <Picture src={person.pictures[0]} />
