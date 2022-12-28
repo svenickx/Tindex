@@ -6,6 +6,7 @@ import SplashScreen from '../screens/SplashScreen';
 import Root from './Root';
 import {MAIN_COLOR, TITLE_COLOR_PRIMARY} from 'react-native-dotenv';
 import {NavigationContainer} from '@react-navigation/native';
+import MessageScreen from '../screens/MessageScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +39,7 @@ const Routes = () => {
           options={{headerShown: false}}
         />
         <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="Message" component={MessageScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

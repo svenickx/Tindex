@@ -34,6 +34,7 @@ const Root = () => {
   };
   const MatchesOptions = {
     ...defaultOptions,
+    unmountOnBlur: true,
     tabBarIcon: ({color}) => (
       <MaterialCommunityIcons name="heart" color={color} size={30} />
     ),

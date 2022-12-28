@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, FlatList, SafeAreaView} from 'react-native';
+import {FlatList, SafeAreaView} from 'react-native';
 import axios from 'axios';
 import PeopleCard from '../components/peopleCard';
-import {CenteredView} from '../../public/style/styleComponents';
-import {MAIN_COLOR, PROFILE_ID} from 'react-native-dotenv';
+import {PROFILE_ID} from 'react-native-dotenv';
+import Loading from '../components/loading/loading';
 
 const HomeScreen = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -27,12 +27,9 @@ const HomeScreen = () => {
   }, [page]);
 
   if (isLoading) {
-    return (
-      <CenteredView>
-        <ActivityIndicator size="large" color={MAIN_COLOR} />
-      </CenteredView>
-    );
+    return <Loading />;
   }
+
   return (
     <SafeAreaView>
       <FlatList

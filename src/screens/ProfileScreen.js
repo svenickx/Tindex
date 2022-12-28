@@ -1,22 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {
-  ActivityIndicator,
-  SafeAreaView,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
+import {SafeAreaView} from 'react-native';
 import axios from 'axios';
-import Question from '../components/question';
-import Picture from '../components/picture';
-import {
-  CenteredView,
-  DescriptionBlack,
-  PaddingView,
-  TitleBlack,
-} from '../../public/style/styleComponents';
-import ResultMatch from '../components/ResultMatch';
-import PeopleInfo from '../components/peopleInfo';
-import {MAIN_COLOR} from 'react-native-dotenv';
+import Loading from '../components/loading/loading';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import ProfileView from '../components/profileView';
 
 const ProfileScreen = ({route, navigation}) => {
   const [person, setPerson] = useState({});
@@ -38,6 +25,29 @@ const ProfileScreen = ({route, navigation}) => {
     setAnswerList([...answerList, isCorrect]);
   };
 
+  const addMatch = async () => {
+    const match = {
+      personId: route.params.id,
+      matchResult,
+      answerList,
+    };
+
+    let currentMatches = await AsyncStorage.getItem('matches');
+    currentMatches = JSON.parse(currentMatches);
+
+    if (currentMatches) {
+      if (!currentMatches.some(m => m.personId === match.personId)) {
+        currentMatches = [...currentMatches, match];
+      }
+    } else {
+      currentMatches = [match];
+    }
+
+    await AsyncStorage.setItem('matches', JSON.stringify(currentMatches)).catch(
+      err => console.log(err),
+    );
+  };
+
   useEffect(() => {
     axios
       .get(`http://mobile.svenckx.com/person/${route.params.id}`)
@@ -51,10 +61,32 @@ const ProfileScreen = ({route, navigation}) => {
   }, [route.params.id]);
 
   useEffect(() => {
-    navigation.setOptions({
-      title: `Profil de ${person.name}`,
-    });
-  }, [person.name, navigation]);
+    if (person) {
+      navigation.setOptions({
+        title: `Profil de ${person.name}`,
+      });
+    } else {
+      navigation.setOptions({
+        title: 'Chargement du profil',
+      });
+    }
+  }, [person.name, navigation, person]);
+
+  useEffect(() => {
+    if (person) {
+      AsyncStorage.getItem('matches').then(val => {
+        if (val) {
+          const matches = JSON.parse(val);
+          const currentResult = matches.find(
+            e => e.personId === route.params.id,
+          );
+          setAllQuestionAnswered(true);
+          setMatchResult(currentResult.matchResult);
+          setAnswerList(currentResult.answerList);
+        }
+      });
+    }
+  }, [person]);
 
   useEffect(() => {
     if (person.questions !== undefined) {
@@ -65,35 +97,27 @@ const ProfileScreen = ({route, navigation}) => {
     }
   }, [answerList, person.questions]);
 
+  useEffect(() => {
+    if (allQuestionAnswered) {
+      addMatch();
+    }
+  }, [allQuestionAnswered, matchResult]);
+
   if (isLoading) {
-    return (
-      <CenteredView>
-        <ActivityIndicator size="large" color={MAIN_COLOR} />
-      </CenteredView>
-    );
+    return <Loading />;
   }
 
   return (
     <SafeAreaView>
-      <ScrollView>
-        <TouchableOpacity onPress={changePicture}>
-          <Picture src={person.pictures[pictureIndex]} />
-        </TouchableOpacity>
-        <PaddingView>
-          <PeopleInfo person={person} />
-          <TitleBlack>Description</TitleBlack>
-          <DescriptionBlack>{person.description}</DescriptionBlack>
-        </PaddingView>
-        <PaddingView>
-          <TitleBlack>Questions de {person.name}</TitleBlack>
-          {person.questions.map((q, i) => {
-            return (
-              <Question key={i} question={q} handleAnswer={handleAnswer} />
-            );
-          })}
-        </PaddingView>
-        {allQuestionAnswered ? <ResultMatch matchResult={matchResult} /> : ''}
-      </ScrollView>
+      <ProfileView
+        handleAnswer={handleAnswer}
+        allQuestionAnswered={allQuestionAnswered}
+        matchResult={matchResult}
+        answerList={answerList}
+        person={person}
+        pictureIndex={pictureIndex}
+        changePicture={changePicture}
+      />
     </SafeAreaView>
   );
 };

@@ -58,19 +58,6 @@ export const DescriptionBlack = styled.Text`
   font-size: 18px;
 `;
 
-export const SplashView = styled.View`
-  height: 90%;
-`;
-export const SplashLogoView = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-`;
-export const SplashLogoImage = styled.Image`
-  width: 100%;
-  height: 150px;
-`;
-
 export const LoginInputView = styled.View`
   flex: 1;
 `;

@@ -1,24 +1,19 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
+import {Button, ScrollView, TouchableOpacity} from 'react-native';
 import {
-  ActivityIndicator,
-  Button,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
-import {
-  CenteredView,
   DescriptionBlack,
   PaddingView,
   TitleBlack,
 } from '../../public/style/styleComponents';
-import {MAIN_COLOR, PROFILE_ID} from 'react-native-dotenv';
+import {PROFILE_ID} from 'react-native-dotenv';
 import axios from 'axios';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Picture from '../components/picture';
 import PeopleInfo from '../components/peopleInfo';
 import Question from '../components/question';
+import Loading from '../components/loading/loading';
 
 const MyProfileScreen = () => {
   const [person, setPerson] = useState({});
@@ -40,11 +35,11 @@ const MyProfileScreen = () => {
         <Button
           title="Logout"
           onPress={() => {
-            AsyncStorage.getItem('jwtToken').then(res =>
+            AsyncStorage.removeItem('matches').then(() => {
               AsyncStorage.removeItem('jwtToken').then(() => {
                 nav.navigate('Login');
-              }),
-            );
+              });
+            });
           }}
         />
       ),
@@ -62,11 +57,7 @@ const MyProfileScreen = () => {
   });
 
   if (isLoading) {
-    return (
-      <CenteredView>
-        <ActivityIndicator size="large" color={MAIN_COLOR} />
-      </CenteredView>
-    );
+    return <Loading />;
   }
 
   return (

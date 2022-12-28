@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, Button} from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import {
@@ -8,7 +8,7 @@ import {
   SidePaddingView,
 } from '../../public/style/styleComponents';
 
-const Question = ({question, handleAnswer}) => {
+const Question = ({question, handleAnswer, answer}) => {
   const [selectedResponse, setSelectedResponse] = useState('');
   const [isAnswered, setIsAnswered] = useState(false);
   const [isCorrect, setIsCorrect] = useState(false);
@@ -27,6 +27,16 @@ const Question = ({question, handleAnswer}) => {
       setIsCorrect(false);
     }
   };
+
+  useEffect(() => {
+    if (answer === true) {
+      setIsAnswered(true);
+      setIsCorrect(answer);
+    } else if (answer === false) {
+      setIsAnswered(true);
+      setIsCorrect(answer);
+    }
+  }, [answer]);
 
   return (
     <PaddingView>
