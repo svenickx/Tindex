@@ -4,21 +4,23 @@ import LoginScreen from '../screens/LoginScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import SplashScreen from '../screens/SplashScreen';
 import Root from './Root';
-import {MAIN_COLOR, TITLE_COLOR_PRIMARY} from 'react-native-dotenv';
 import {NavigationContainer} from '@react-navigation/native';
 import MessageScreen from '../screens/MessageScreen';
+import {useTheme} from 'styled-components';
 
 const Stack = createNativeStackNavigator();
 
 const Routes = () => {
+  const theme = useTheme();
+
   return (
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
           headerStyle: {
-            backgroundColor: MAIN_COLOR,
+            backgroundColor: theme.primary,
           },
-          headerTintColor: TITLE_COLOR_PRIMARY,
+          headerTintColor: theme.secondary,
           headerTitleStyle: {
             fontWeight: 'bold',
           },

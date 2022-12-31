@@ -1,9 +1,10 @@
 import React from 'react';
 import {ActivityIndicator, SafeAreaView, View} from 'react-native';
-import {MAIN_COLOR} from 'react-native-dotenv';
+import {useTheme} from 'styled-components';
 import {SplashLogoImage, SplashLogoView, SplashView} from './style';
 
 const Splash = () => {
+  const theme = useTheme();
   return (
     <SafeAreaView>
       <SplashView>
@@ -13,7 +14,7 @@ const Splash = () => {
           />
         </SplashLogoView>
         <View>
-          <ActivityIndicator size="large" color={MAIN_COLOR} />
+          <ActivityIndicator size="large" color={theme.primary} />
         </View>
       </SplashView>
     </SafeAreaView>

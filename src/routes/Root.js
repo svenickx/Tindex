@@ -2,22 +2,23 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
 import HomeScreen from '../screens/HomeScreen';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {HeaderImage, HeaderView} from '../../public/style/styleComponents';
 import MatchesScreen from '../screens/MatchesScreen';
 import MyProfileScreen from '../screens/MyProfileScreen';
-import {MAIN_COLOR, TITLE_COLOR_PRIMARY} from 'react-native-dotenv';
 import HeaderLogo from '../components/headerLogo';
+import {useTheme} from 'styled-components';
 
 const BottomTab = createBottomTabNavigator();
 
 const Root = () => {
+  const theme = useTheme();
+
   const defaultOptions = {
     tabBarShowLabel: false,
-    tabBarInactiveBackgroundColor: MAIN_COLOR,
-    tabBarActiveBackgroundColor: MAIN_COLOR,
-    tabBarInactiveTintColor: TITLE_COLOR_PRIMARY,
-    headerTintColor: TITLE_COLOR_PRIMARY,
-    headerStyle: {backgroundColor: MAIN_COLOR},
+    tabBarInactiveBackgroundColor: theme.primary,
+    tabBarActiveBackgroundColor: theme.primary,
+    tabBarInactiveTintColor: theme.secondary,
+    headerTintColor: theme.secondary,
+    headerStyle: {backgroundColor: theme.primary},
   };
   const homeOptions = {
     ...defaultOptions,
@@ -42,7 +43,7 @@ const Root = () => {
   };
 
   return (
-    <BottomTab.Navigator activeColor={TITLE_COLOR_PRIMARY}>
+    <BottomTab.Navigator activeColor={theme.secondary}>
       <BottomTab.Screen
         name="Home"
         component={HomeScreen}

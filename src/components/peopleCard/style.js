@@ -1,9 +1,4 @@
 import styled from 'styled-components';
-import {
-  MAIN_COLOR,
-  TITLE_COLOR_PRIMARY,
-  TITLE_COLOR_SECONDARY,
-} from 'react-native-dotenv';
 
 export const Card = styled.TouchableOpacity`
   height: 500px;

@@ -1,20 +1,10 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {Button, ScrollView, TouchableOpacity} from 'react-native';
-import {
-  DescriptionBlack,
-  PaddingView,
-  TitleBlack,
-} from '../../public/style/styleComponents';
 import {PROFILE_ID} from 'react-native-dotenv';
 import axios from 'axios';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import Picture from '../components/picture';
-import PeopleInfo from '../components/peopleInfo';
-import Question from '../components/question';
 import Loading from '../components/loading/loading';
 import MyProfileView from '../components/myProfileView';
+import LogoutButton from '../components/LogoutButton';
 
 const MyProfileScreen = () => {
   const [person, setPerson] = useState({});
@@ -32,18 +22,7 @@ const MyProfileScreen = () => {
 
   useEffect(() => {
     nav.setOptions({
-      headerRight: () => (
-        <Button
-          title="Logout"
-          onPress={() => {
-            AsyncStorage.removeItem('matches').then(() => {
-              AsyncStorage.removeItem('jwtToken').then(() => {
-                nav.navigate('Login');
-              });
-            });
-          }}
-        />
-      ),
+      headerRight: () => <LogoutButton />,
     });
 
     axios
