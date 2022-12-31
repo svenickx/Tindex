@@ -1,8 +1,14 @@
 import React from 'react';
+import {ThemeProvider} from 'styled-components';
+import theme from './src/config/theme';
 import Routes from './src/routes';
 
 const App = () => {
-  return <Routes />;
+  return (
+    <ThemeProvider theme={theme}>
+      <Routes />
+    </ThemeProvider>
+  );
 };
 
 export default App;

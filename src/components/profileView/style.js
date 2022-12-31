@@ -1,12 +1,11 @@
 import styled from 'styled-components';
-import {TITLE_COLOR_SECONDARY} from 'react-native-dotenv';
 
 export const PaddingView10 = styled.View`
   padding: 10px;
 `;
 
 export const TitleBlack = styled.Text`
-  color: ${TITLE_COLOR_SECONDARY};
+  color: ${props => props.theme.tertiary};
   font-size: 25px;
   font-weight: bold;
 `;

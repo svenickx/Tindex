@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import {MAIN_COLOR} from 'react-native-dotenv';
 
 export const MessageInputView = styled.View`
   height: 80px;
   width: 100%;
-  background-color: ${MAIN_COLOR};
+  background-color: ${props => props.theme.primary};
   position: absolute;
   bottom: 0;
   flex-direction: row;

@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import {TITLE_COLOR_SECONDARY} from 'react-native-dotenv';
 
 export const TitleSmallBlack = styled.Text`
-  color: ${TITLE_COLOR_SECONDARY};
+  color: ${props => props.theme.tertiary};
   font-size: 18px;
 `;
 

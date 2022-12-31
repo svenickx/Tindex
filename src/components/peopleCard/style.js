@@ -25,7 +25,7 @@ export const CardTitle = styled.View`
 export const TitleWhite = styled.Text`
   padding-bottom: 10px;
   font-size: 30px;
-  color: ${TITLE_COLOR_PRIMARY};
+  color: ${props => props.theme.secondary};
 `;
 
 export const DescriptionWhite = styled.Text`

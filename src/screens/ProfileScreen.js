@@ -60,7 +60,7 @@ const ProfileScreen = ({route, navigation}) => {
   }, [route.params.id]);
 
   useEffect(() => {
-    if (person) {
+    if (person.name) {
       navigation.setOptions({
         title: `Profil de ${person.name}`,
       });
