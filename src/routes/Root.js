@@ -6,6 +6,7 @@ import {HeaderImage, HeaderView} from '../../public/style/styleComponents';
 import MatchesScreen from '../screens/MatchesScreen';
 import MyProfileScreen from '../screens/MyProfileScreen';
 import {MAIN_COLOR, TITLE_COLOR_PRIMARY} from 'react-native-dotenv';
+import HeaderLogo from '../components/headerLogo';
 
 const BottomTab = createBottomTabNavigator();
 
@@ -24,13 +25,7 @@ const Root = () => {
       <MaterialCommunityIcons name="home" color={color} size={30} />
     ),
 
-    header: () => (
-      <HeaderView>
-        <HeaderImage
-          source={require('../../public/images/tindex_logo_small.png')}
-        />
-      </HeaderView>
-    ),
+    header: () => <HeaderLogo />,
   };
   const MatchesOptions = {
     ...defaultOptions,

@@ -1,13 +1,8 @@
 import {useNavigation} from '@react-navigation/native';
 import {React} from 'react';
 import {View} from 'react-native';
-import {
-  Card,
-  CardTitle,
-  DescriptionWhite,
-  TitleWhite,
-} from '../../public/style/styleComponents';
-import Picture from './picture';
+import Picture from '../picture';
+import {Card, CardTitle, DescriptionWhite, TitleWhite} from './style';
 
 const PeopleCard = ({person}) => {
   const navigation = useNavigation();

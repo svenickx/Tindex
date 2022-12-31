@@ -1,10 +1,6 @@
 import React from 'react';
 import {Text} from 'react-native';
-import {
-  PaddingView,
-  SidePaddingView,
-  TitleBlack,
-} from '../../public/style/styleComponents';
+import {PaddingView, SidePaddingView, TitleBlack} from './style';
 
 const ResultMatch = ({matchResult}) => {
   return (

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {TITLE_COLOR_SECONDARY} from 'react-native-dotenv';
 
-export const PaddingView10 = styled.View`
+export const PaddingView = styled.View`
   padding: 10px;
 `;
 

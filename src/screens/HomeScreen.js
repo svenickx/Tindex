@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import {FlatList, SafeAreaView} from 'react-native';
 import axios from 'axios';
-import PeopleCard from '../components/peopleCard';
 import {PROFILE_ID} from 'react-native-dotenv';
 import Loading from '../components/loading/loading';
+import PeopleCard from '../components/peopleCard';
 
 const HomeScreen = () => {
   const [isLoading, setIsLoading] = useState(true);

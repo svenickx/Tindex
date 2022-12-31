@@ -14,6 +14,7 @@ import Picture from '../components/picture';
 import PeopleInfo from '../components/peopleInfo';
 import Question from '../components/question';
 import Loading from '../components/loading/loading';
+import MyProfileView from '../components/myProfileView';
 
 const MyProfileScreen = () => {
   const [person, setPerson] = useState({});
@@ -61,24 +62,11 @@ const MyProfileScreen = () => {
   }
 
   return (
-    <SafeAreaView>
-      <ScrollView>
-        <TouchableOpacity onPress={changePicture}>
-          <Picture src={person.pictures[pictureIndex]} />
-        </TouchableOpacity>
-        <PaddingView>
-          <PeopleInfo person={person} />
-          <TitleBlack>Votre description</TitleBlack>
-          <DescriptionBlack>{person.description}</DescriptionBlack>
-        </PaddingView>
-        <PaddingView>
-          <TitleBlack>Vos questions</TitleBlack>
-          {person.questions.map((q, i) => {
-            return <Question key={i} question={q} />;
-          })}
-        </PaddingView>
-      </ScrollView>
-    </SafeAreaView>
+    <MyProfileView
+      person={person}
+      pictureIndex={pictureIndex}
+      changePicture={changePicture}
+    />
   );
 };
 

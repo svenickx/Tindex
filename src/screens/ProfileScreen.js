@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView} from 'react-native';
 import axios from 'axios';
 import Loading from '../components/loading/loading';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -80,9 +79,11 @@ const ProfileScreen = ({route, navigation}) => {
           const currentResult = matches.find(
             e => e.personId === route.params.id,
           );
-          setAllQuestionAnswered(true);
-          setMatchResult(currentResult.matchResult);
-          setAnswerList(currentResult.answerList);
+          if (currentResult) {
+            setAllQuestionAnswered(true);
+            setMatchResult(currentResult.matchResult);
+            setAnswerList(currentResult.answerList);
+          }
         }
       });
     }
@@ -108,17 +109,15 @@ const ProfileScreen = ({route, navigation}) => {
   }
 
   return (
-    <SafeAreaView>
-      <ProfileView
-        handleAnswer={handleAnswer}
-        allQuestionAnswered={allQuestionAnswered}
-        matchResult={matchResult}
-        answerList={answerList}
-        person={person}
-        pictureIndex={pictureIndex}
-        changePicture={changePicture}
-      />
-    </SafeAreaView>
+    <ProfileView
+      handleAnswer={handleAnswer}
+      allQuestionAnswered={allQuestionAnswered}
+      matchResult={matchResult}
+      answerList={answerList}
+      person={person}
+      pictureIndex={pictureIndex}
+      changePicture={changePicture}
+    />
   );
 };
 

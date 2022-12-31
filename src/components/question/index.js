@@ -6,7 +6,7 @@ import {
   PickerFalseResponse,
   PickerGoodResponse,
   SidePaddingView,
-} from '../../public/style/styleComponents';
+} from './style';
 
 const Question = ({question, handleAnswer, answer}) => {
   const [selectedResponse, setSelectedResponse] = useState('');

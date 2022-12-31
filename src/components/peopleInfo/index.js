@@ -1,9 +1,9 @@
 import React from 'react';
-import {PaddingView, TitleSmallBlack} from '../../public/style/styleComponents';
+import {PaddingView10, TitleSmallBlack} from './style';
 
 const PeopleInfo = ({person}) => {
   return (
-    <PaddingView>
+    <PaddingView10>
       <TitleSmallBlack>
         Age: {person.age ? person.age : 'Non renseigné'}
       </TitleSmallBlack>
@@ -16,7 +16,7 @@ const PeopleInfo = ({person}) => {
       <TitleSmallBlack>
         Distance: {person.distance ? `${person.distance}km` : 'Non renseigné'}
       </TitleSmallBlack>
-    </PaddingView>
+    </PaddingView10>
   );
 };
 

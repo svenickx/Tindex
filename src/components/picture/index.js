@@ -1,5 +1,5 @@
 import React from 'react';
-import {CardImage} from '../../public/style/styleComponents';
+import {CardImage} from './style';
 
 const Picture = ({src}) => {
   return (
