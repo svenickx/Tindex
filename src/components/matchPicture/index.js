@@ -8,7 +8,14 @@ const MatchPicture = ({src, profileId}) => {
   return (
     <TouchableOpacity
       onPress={() => navigation.navigate('Profile', {id: profileId})}>
-      <Image source={{uri: src}} />
+      <Image
+        source={{
+          uri:
+            src !== ''
+              ? src
+              : 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/2048px-No_image_available.svg.png',
+        }}
+      />
     </TouchableOpacity>
   );
 };

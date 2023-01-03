@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native';
+import CenteredText from '../components/centeredText';
 import Loading from '../components/loading/loading';
 import MatchRows from '../components/matchRows';
 
@@ -29,10 +30,10 @@ const MatchesScreen = () => {
         )
         .then(res => {
           setMatchesProfiles(res.data);
-          setIsLoading(false);
         })
         .catch(err => console.log(err));
     }
+    setIsLoading(false);
   }, [matches]);
 
   useEffect(() => {
@@ -46,10 +47,10 @@ const MatchesScreen = () => {
 
   return (
     <SafeAreaView>
-      {matchesProfiles ? (
+      {matchesProfiles && matchesProfiles.length > 0 ? (
         <MatchRows matches={matches} matchesProfiles={matchesProfiles} />
       ) : (
-        'No matches'
+        <CenteredText title={'Aucun Match!'} />
       )}
     </SafeAreaView>
   );

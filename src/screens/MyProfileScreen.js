@@ -5,6 +5,7 @@ import axios from 'axios';
 import Loading from '../components/loading/loading';
 import MyProfileView from '../components/myProfileView';
 import LogoutButton from '../components/LogoutButton';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const MyProfileScreen = () => {
   const [person, setPerson] = useState({});
@@ -29,12 +30,17 @@ const MyProfileScreen = () => {
       .get(`http://mobile.svenckx.com/person/${PROFILE_ID}`)
       .then(res => {
         setPerson(res.data);
-        setIsLoading(false);
+        AsyncStorage.setItem(
+          'myQuestions',
+          JSON.stringify(res.data.questions),
+        ).then(() => {
+          setIsLoading(false);
+        });
       })
       .catch(err => {
         console.log(err);
       });
-  });
+  }, [nav]);
 
   if (isLoading) {
     return <Loading />;
@@ -45,6 +51,7 @@ const MyProfileScreen = () => {
       person={person}
       pictureIndex={pictureIndex}
       changePicture={changePicture}
+      setPerson={setPerson}
     />
   );
 };

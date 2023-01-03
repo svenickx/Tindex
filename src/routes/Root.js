@@ -20,14 +20,15 @@ const Root = () => {
     headerTintColor: theme.secondary,
     headerStyle: {backgroundColor: theme.primary},
   };
+
   const homeOptions = {
     ...defaultOptions,
     tabBarIcon: ({color}) => (
       <MaterialCommunityIcons name="home" color={color} size={30} />
     ),
-
     header: () => <HeaderLogo />,
   };
+
   const MatchesOptions = {
     ...defaultOptions,
     unmountOnBlur: true,
@@ -35,6 +36,7 @@ const Root = () => {
       <MaterialCommunityIcons name="heart" color={color} size={30} />
     ),
   };
+
   const MyProfileOptions = {
     ...defaultOptions,
     tabBarIcon: ({color}) => (

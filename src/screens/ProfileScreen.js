@@ -87,7 +87,7 @@ const ProfileScreen = ({route, navigation}) => {
         }
       });
     }
-  }, [person]);
+  }, [person, route.params.id]);
 
   useEffect(() => {
     if (person.questions !== undefined) {
@@ -102,7 +102,7 @@ const ProfileScreen = ({route, navigation}) => {
     if (allQuestionAnswered) {
       addMatch();
     }
-  }, [allQuestionAnswered, matchResult]);
+  }, [allQuestionAnswered]);
 
   if (isLoading) {
     return <Loading />;

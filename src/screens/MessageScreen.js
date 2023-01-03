@@ -30,7 +30,7 @@ const MessageScreen = ({route}) => {
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  }, [route.params.id]);
 
   if (isLoading) {
     return <Loading />;
