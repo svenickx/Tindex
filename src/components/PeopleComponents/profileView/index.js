@@ -2,8 +2,8 @@ import React from 'react';
 import {ScrollView, TouchableOpacity, SafeAreaView} from 'react-native';
 import PeopleInfo from '../peopleInfo';
 import Picture from '../picture';
-import Question from '../question';
-import ResultMatch from '../resultMatch';
+import Question from '../../QuestionsComponents/question';
+import ResultMatch from '../../MatchsComponents/resultMatch';
 import {DescriptionBlack, PaddingView10, TitleBlack} from './style';
 
 const ProfileView = props => {

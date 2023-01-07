@@ -1,7 +1,7 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
-import LoginInput from '../LoginInput/LoginInput';
-import Logo from '../logo/logo';
+import LoginInput from '../LoginInput';
+import Logo from '../../LogoComponents/logo';
 import {SplashView} from './style';
 
 const LoginView = () => {

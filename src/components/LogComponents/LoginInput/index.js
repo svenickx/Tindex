@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import CustomTextInput from '../customTextInput/customTextInput';
+import CustomTextInput from '../../customTextInput';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
@@ -29,12 +29,12 @@ const LoginInput = () => {
         try {
           await AsyncStorage.setItem('jwtToken', res.headers['x-access-token']);
         } catch (err) {
-          console.log(err);
+          console.error(err);
           return;
         }
       })
       .catch(err => {
-        console.log(err);
+        console.error(err);
       });
 
     navigation.navigate('Root', {screen: 'Home'});

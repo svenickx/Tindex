@@ -1,17 +1,16 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React from 'react';
 import {SafeAreaView, ScrollView, TouchableOpacity} from 'react-native';
-import NewQuestion from '../newQuestion/newQuestion';
-import PeopleInfo from '../peopleInfo';
-import Picture from '../picture';
-import Question from '../question';
+import NewQuestion from '../../QuestionsComponents/newQuestion';
+import PeopleInfo from '../../PeopleComponents/peopleInfo';
+import Picture from '../../PeopleComponents/picture';
+import Question from '../../QuestionsComponents/question';
 import {DescriptionBlack, PaddingView, TitleBlack} from './style';
 
 const MyProfileView = ({person, changePicture, pictureIndex, setPerson}) => {
   const addQuestion = q => {
     AsyncStorage.getItem('myQuestions').then(async val => {
       let newQuestions = [];
-      console.log(val);
       if (val !== null) {
         const currentQ = JSON.parse(val);
         newQuestions = [...currentQ, q];
@@ -23,7 +22,7 @@ const MyProfileView = ({person, changePicture, pictureIndex, setPerson}) => {
           person.questions = newQuestions;
           setPerson(person);
         })
-        .catch(err => console.log(err));
+        .catch(err => console.error(err));
     });
   };
 

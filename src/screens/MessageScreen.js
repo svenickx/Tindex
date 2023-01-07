@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
-import Loading from '../components/loading/loading';
+import Loading from '../components/LoadingComponents/loading';
 import {PROFILE_ID} from 'react-native-dotenv';
-import MessageView from '../components/messageView';
+import MessageView from '../components/MessagesComponents/messageView';
 
 const MessageScreen = ({route}) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -28,7 +28,7 @@ const MessageScreen = ({route}) => {
         setIsLoading(false);
       })
       .catch(err => {
-        console.log(err);
+        console.error(err);
       });
   }, [route.params.id]);
 

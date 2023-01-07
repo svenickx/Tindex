@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import React, {useEffect} from 'react';
-import Splash from '../components/splash/splash';
+import Splash from '../components/LoadingComponents/splash';
 
 const SplashScreen = () => {
   const navigation = useNavigation();
@@ -15,7 +15,7 @@ const SplashScreen = () => {
         }
       })
       .catch(err => {
-        console.log(err);
+        console.error(err);
       });
   }, [navigation]);
 

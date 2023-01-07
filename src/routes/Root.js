@@ -4,7 +4,7 @@ import HomeScreen from '../screens/HomeScreen';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MatchesScreen from '../screens/MatchesScreen';
 import MyProfileScreen from '../screens/MyProfileScreen';
-import HeaderLogo from '../components/headerLogo';
+import HeaderLogo from '../components/LogoComponents/headerLogo';
 import {useTheme} from 'styled-components';
 
 const BottomTab = createBottomTabNavigator();
@@ -35,6 +35,7 @@ const Root = () => {
     tabBarIcon: ({color}) => (
       <MaterialCommunityIcons name="heart" color={color} size={30} />
     ),
+    title: 'Mes Matchs',
   };
 
   const MyProfileOptions = {
@@ -42,6 +43,7 @@ const Root = () => {
     tabBarIcon: ({color}) => (
       <MaterialCommunityIcons name="nature-people" color={color} size={30} />
     ),
+    title: 'Mon Profil',
   };
 
   return (

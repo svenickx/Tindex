@@ -5,7 +5,7 @@ const HeaderLogo = () => {
   return (
     <HeaderView>
       <HeaderImage
-        source={require('../../../public/images/tindex_logo_small.png')}
+        source={require('../../../../public/images/tindex_logo_small.png')}
       />
     </HeaderView>
   );

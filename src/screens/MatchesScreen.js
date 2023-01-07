@@ -3,8 +3,8 @@ import axios from 'axios';
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native';
 import CenteredText from '../components/centeredText';
-import Loading from '../components/loading/loading';
-import MatchRows from '../components/matchRows';
+import Loading from '../components/LoadingComponents/loading';
+import MatchRows from '../components/MatchsComponents/matchRows';
 
 const MatchesScreen = () => {
   const [matches, setMatches] = useState([]);
@@ -18,7 +18,7 @@ const MatchesScreen = () => {
           setMatches(JSON.parse(val));
         }
       })
-      .catch(err => console.log(err));
+      .catch(err => console.error(err));
   }, []);
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const MatchesScreen = () => {
         .then(res => {
           setMatchesProfiles(res.data);
         })
-        .catch(err => console.log(err));
+        .catch(err => console.error(err));
     }
     setIsLoading(false);
   }, [matches]);

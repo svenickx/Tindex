@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import Loading from '../components/loading/loading';
+import Loading from '../components/LoadingComponents/loading';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import ProfileView from '../components/profileView';
+import ProfileView from '../components/PeopleComponents/profileView';
 
 const ProfileScreen = ({route, navigation}) => {
   const [person, setPerson] = useState({});
@@ -43,7 +43,7 @@ const ProfileScreen = ({route, navigation}) => {
     }
 
     await AsyncStorage.setItem('matches', JSON.stringify(currentMatches)).catch(
-      err => console.log(err),
+      err => console.error(err),
     );
   };
 
@@ -55,7 +55,7 @@ const ProfileScreen = ({route, navigation}) => {
         setIsLoading(false);
       })
       .catch(err => {
-        console.log(err);
+        console.error(err);
       });
   }, [route.params.id]);
 

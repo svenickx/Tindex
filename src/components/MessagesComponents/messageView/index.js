@@ -1,5 +1,5 @@
 import React from 'react';
-import Discussion from '../discussion';
+import Discussion from '../../discussion';
 import MessageInput from '../messageInput';
 import {View} from './style';
 

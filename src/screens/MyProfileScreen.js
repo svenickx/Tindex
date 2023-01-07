@@ -2,9 +2,9 @@ import {useNavigation} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {PROFILE_ID} from 'react-native-dotenv';
 import axios from 'axios';
-import Loading from '../components/loading/loading';
-import MyProfileView from '../components/myProfileView';
-import LogoutButton from '../components/LogoutButton';
+import Loading from '../components/LoadingComponents/loading';
+import MyProfileView from '../components/PeopleComponents/myProfileView';
+import LogoutButton from '../components/LogComponents/LogoutButton';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const MyProfileScreen = () => {
@@ -38,7 +38,7 @@ const MyProfileScreen = () => {
         });
       })
       .catch(err => {
-        console.log(err);
+        console.error(err);
       });
   }, [nav]);
 

@@ -5,7 +5,7 @@ const Logo = () => {
   return (
     <SplashLogoView>
       <SplashLogoImage
-        source={require('../../../public/images/tindex_logo.png')}
+        source={require('../../../../public/images/tindex_logo.png')}
       />
     </SplashLogoView>
   );

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Button} from 'react-native';
 import ReactNativeModal from 'react-native-modal';
-import NewQuestionInput from '../newQuestionInput';
+import NewQuestionInput from '../../QuestionsComponents/newQuestionInput';
 import {
   ActionBtn,
   ActionBtns,
