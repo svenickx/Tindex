@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView, ScrollView, TouchableOpacity} from 'react-native';
 import NewQuestion from '../../QuestionsComponents/newQuestion';
 import PeopleInfo from '../../PeopleComponents/peopleInfo';
@@ -8,6 +8,8 @@ import Question from '../../QuestionsComponents/question';
 import {DescriptionBlack, PaddingView, TitleBlack} from './style';
 
 const MyProfileView = ({person, changePicture, pictureIndex, setPerson}) => {
+  const [quetionNumber, setQuestionNumber] = useState(0);
+
   const addQuestion = q => {
     AsyncStorage.getItem('myQuestions').then(async val => {
       let newQuestions = [];
@@ -17,10 +19,12 @@ const MyProfileView = ({person, changePicture, pictureIndex, setPerson}) => {
       } else {
         newQuestions = [q];
       }
+
       AsyncStorage.setItem('myQuestions', JSON.stringify(newQuestions))
         .then(() => {
           person.questions = newQuestions;
           setPerson(person);
+          setQuestionNumber(quetionNumber + 1);
         })
         .catch(err => console.error(err));
     });

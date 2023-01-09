@@ -25,6 +25,10 @@ const ProfileScreen = ({route, navigation}) => {
   };
 
   const addMatch = async () => {
+    if (matchResult < 0.5) {
+      return;
+    }
+
     const match = {
       personId: route.params.id,
       matchResult,
