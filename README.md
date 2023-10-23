@@ -1,3 +1,5 @@
+Utiliser l'API suivante : https://github.com/svenickx/API_Mobile
+
 # Tindex
 ### L'application de rencontre n°1 en Ouzbékistan Orientale.
 
